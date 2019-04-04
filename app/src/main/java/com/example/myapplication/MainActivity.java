@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         final TextView edt_real = findViewById(R.id.edt_real);
         final RadioGroup rb_grupo = findViewById(R.id.rb_grupo);
         final TextView txt_aviso = findViewById(R.id.txt_aviso);
+
 
         final DecimalFormat f = new DecimalFormat("#,##0.00");
 
@@ -47,17 +49,22 @@ public class MainActivity extends AppCompatActivity {
                 if(radio_b.getText().equals("Reais em Dollar")){
 
                         if(reais != 0.0) {
-                            dollar = (reais * 2.1);
+                            dollar = (reais / 2.1);
                             edt_dollar.setText(f.format(dollar));
                         }else{
-                            txt_aviso.setText("Necessário Digitar o valor em Reais!");
+
+                            Toast tmsg = Toast.makeText(getApplicationContext(),"Necessário Digitar o valor em Reais!",Toast.LENGTH_LONG);
+                            tmsg.show();
+
                         }
                 }else{
                         if(dollar != 0.0) {
-                            reais = (dollar / 2.1);
+                            reais = (dollar * 2.1);
                             edt_real.setText(f.format(reais));
                         }else{
-                            txt_aviso.setText("Necessário Digitar o valor em Dollar!");
+                            Toast tmsg = Toast.makeText(getApplicationContext(),"Necessário Digitar o valor em Dollar!",Toast.LENGTH_LONG);
+                            tmsg.show();
+
                         }
                 }
 
