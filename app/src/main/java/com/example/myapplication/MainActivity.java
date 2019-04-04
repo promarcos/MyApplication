@@ -1,9 +1,11 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -19,12 +21,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final Button btn_converte = findViewById(R.id.btn_converte);
+        final Button btn_limpa = findViewById(R.id.btn_limpa);
+        final ImageView img = findViewById(R.id.img);
         final TextView edt_dollar = findViewById(R.id.edt_dollar);
         final TextView edt_real = findViewById(R.id.edt_real);
         final RadioGroup rb_grupo = findViewById(R.id.rb_grupo);
-        final TextView txt_aviso = findViewById(R.id.txt_aviso);
-
-
         final DecimalFormat f = new DecimalFormat("#,##0.00");
 
         edt_dollar.setText(f.format(0.0));
@@ -71,5 +72,18 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        btn_limpa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it;
+                it = new Intent(getApplicationContext(), MsgTela.class);
+                startActivity(it);
+                edt_dollar.setText(f.format(0.0));
+                edt_real.setText(f.format(0.0));
+
+            }
+        });
+
     }
 }
