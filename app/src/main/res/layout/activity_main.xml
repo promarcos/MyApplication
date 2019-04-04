@@ -126,12 +126,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:scaleType="center"
-        android:src="@mipmap/dinheiro_round"
+        android:src="@mipmap/dinheiro_ic"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.547"
-        tools:srcCompat="@mipmap/dinheiro_ic" />
+        app:layout_constraintVertical_bias="0.547" />
 
     <RadioGroup
         android:id="@+id/rb_grupo"
