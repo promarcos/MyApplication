@@ -26,10 +26,12 @@ public class MainActivity extends AppCompatActivity {
         final TextView edt_dollar = findViewById(R.id.edt_dollar);
         final TextView edt_real = findViewById(R.id.edt_real);
         final RadioGroup rb_grupo = findViewById(R.id.rb_grupo);
-        final DecimalFormat f = new DecimalFormat("#,##0.00");
+        final DecimalFormat dd = new DecimalFormat("$ #,##0.00");
+        final DecimalFormat rr = new DecimalFormat("R$ #,##0.00");
 
-        edt_dollar.setText(f.format(0.0));
-        edt_real.setText(f.format(0.0));
+
+        edt_dollar.setText(dd.format(0.0));
+        edt_real.setText(rr.format(0.0));
 
         btn_converte.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,10 +41,10 @@ public class MainActivity extends AppCompatActivity {
                 RadioButton radio_b;
 
                 if (!edt_dollar.getText().toString().equals("")) {
-                    dollar = Double.parseDouble(edt_dollar.getText().toString().replace(",","."));
+                    dollar = Double.parseDouble(edt_dollar.getText().toString().replace(",",".").replace("$ ",""));
                 }
                 if(!edt_real.getText().toString().equals("")){
-                    reais = Double.parseDouble(edt_real.getText().toString().replace(",","."));
+                    reais = Double.parseDouble(edt_real.getText().toString().replace(",",".").replace("R$ ",""));
                 }
 
                 radio_b = findViewById(rb_grupo.getCheckedRadioButtonId());
@@ -51,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
                         if(reais != 0.0) {
                             dollar = (reais / 2.1);
-                            edt_dollar.setText(f.format(dollar));
+                            edt_dollar.setText(dd.format(dollar));
                         }else{
 
                             Toast tmsg = Toast.makeText(getApplicationContext(),"Necessário Digitar o valor em Reais!",Toast.LENGTH_LONG);
@@ -61,9 +63,10 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                         if(dollar != 0.0) {
                             reais = (dollar * 2.1);
-                            edt_real.setText(f.format(reais));
+                            edt_real.setText(rr.format(reais));
                         }else{
-                            Toast tmsg = Toast.makeText(getApplicationContext(),"Necessário Digitar o valor em Dollar!",Toast.LENGTH_LONG);
+
+                            Toast tmsg = Toast.makeText(getApplicationContext(), "Necessário Digitar o valor em Dollar!", Toast.LENGTH_LONG);
                             tmsg.show();
 
                         }
@@ -78,9 +81,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent it;
                 it = new Intent(getApplicationContext(), MsgTela.class);
+
                 startActivity(it);
-                edt_dollar.setText(f.format(0.0));
-                edt_real.setText(f.format(0.0));
+                edt_dollar.setText(dd.format(0.0));
+                edt_real.setText(rr.format(0.0));
+
+
+
 
             }
         });
